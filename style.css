@@ -352,10 +352,24 @@ section.revealed {
 }
 
 @media (max-width: 768px) {
+    nav {
+        padding: 15px 3%;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .nav-cta .btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
     .mobile-menu-btn {
         display: block;
         margin-left: auto;
-        margin-right: 20px;
+        margin-right: 15px;
     }
 
     .nav-links {
