@@ -401,4 +401,32 @@ section.revealed {
     .contact-container {
         grid-template-columns: 1fr;
     }
+
+    /* Slider Implementation for Our Premium Offerings on Mobile */
+    .services-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 15px;
+        /* Added gap between items */
+        padding: 10px 15px;
+        /* Added padding so curves aren't cut off */
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        /* Hide scrollbar Firefox */
+    }
+
+    .services-grid::-webkit-scrollbar {
+        display: none;
+        /* Hide scrollbar Chrome/Safari */
+    }
+
+    .service-item {
+        flex: 0 0 calc(100% - 30px);
+        /* Adjust width to account for gaps/padding */
+        scroll-snap-align: center;
+        border-radius: 15px;
+        /* Added the small curve */
+    }
 }

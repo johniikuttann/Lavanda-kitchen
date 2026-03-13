@@ -105,4 +105,45 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1500);
         });
     }
+
+    // 7. Automatic Slider for Premium Offerings (Mobile Only)
+    const servicesGrid = document.querySelector('.services-grid');
+    const serviceItems = document.querySelectorAll('.service-item');
+    let currentIndex = 0;
+    let sliderInterval;
+
+    function startAutoSlider() {
+        if (window.innerWidth <= 768 && servicesGrid && serviceItems.length > 0) {
+            sliderInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % serviceItems.length;
+                // Use the first item's width + gap for accurate scrolling
+                const itemWidth = serviceItems[0].offsetWidth + 15; // 15 is the gap in CSS
+                servicesGrid.scrollTo({
+                    left: currentIndex * itemWidth,
+                    behavior: 'smooth'
+                });
+            }, 30000); // 30 seconds
+        }
+    }
+
+    function stopAutoSlider() {
+        clearInterval(sliderInterval);
+    }
+
+    // Initialize slider
+    startAutoSlider();
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        stopAutoSlider();
+        currentIndex = 0; // Reset index on resize to avoid alignment issues
+        if (servicesGrid) servicesGrid.scrollTo({ left: 0 });
+        startAutoSlider();
+    });
+
+    // Pause on user interaction
+    if (servicesGrid) {
+        servicesGrid.addEventListener('touchstart', stopAutoSlider);
+        servicesGrid.addEventListener('touchend', startAutoSlider);
+    }
 });
